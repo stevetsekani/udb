@@ -5,9 +5,7 @@ import time
 from backend.services.download_manager import (
     STATUS_CANCELLED,
     STATUS_COMPLETED,
-    STATUS_DOWNLOADING,
     STATUS_FAILED,
-    STATUS_QUEUED,
 )
 
 
@@ -26,7 +24,9 @@ def test_create_batch_downloads_and_completes(manager):
     jobs = manager.create_batch('ep-1', '1080', {'start': 1, 'end': 2}, 'C:/tmp')
     assert len(jobs) == 2
     for job in jobs:
-        assert job['status'] in (STATUS_QUEUED, STATUS_DOWNLOADING)
+        # Do not assert the transient initial status — a fast machine may have
+        # already finished the background prep + download by the time
+        # create_batch returns. Just verify each job reaches a terminal state.
         final = _wait_for_status(manager, job['id'], [STATUS_COMPLETED, STATUS_FAILED])
         assert final['status'] == STATUS_COMPLETED
         assert final['progress'] == 100.0
