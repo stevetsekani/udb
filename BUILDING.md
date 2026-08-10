@@ -104,6 +104,11 @@ cd frontend && npx tsc --noEmit      # type-check
 
 ## Notes / troubleshooting
 
+* **Windows: `npm` is a `.cmd` shim** — there is no `npm.exe` on PATH, so
+  Python's `subprocess.run(['npm', …])` fails with `FileNotFoundError` unless
+  the command is routed through the shell. `packaging/windows/build_windows.py`
+  uses `shell=True` on Windows for this reason (`python`/`pip` are real `.exe`
+  files and work either way).
 * **PyInstaller console=False** — the Windows build is a windowed app; stdout
   goes nowhere. All diagnostics are in the rotating log file under the app-data
   directory.
