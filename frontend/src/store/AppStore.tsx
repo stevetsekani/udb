@@ -125,6 +125,25 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     await Promise.all([refreshDownloads(), refreshHistory(), refreshSettings(), refreshStats()])
   }, [refreshDownloads, refreshHistory, refreshSettings, refreshStats])
 
+  // Optional: check GitHub Releases for a newer version on startup
+  const checkForUpdates = useCallback(async () => {
+    try {
+      const res = await fetch('https://api.github.com/repos/stevetsekani/udb/releases/latest', {
+        headers: { Accept: 'application/vnd.github+json' },
+      })
+      if (!res.ok) return
+      const data = await res.json()
+      const tag = (data.tag_name || '').replace(/^v/i, '')
+      if (!tag || !version) return
+      if (compareVersions(tag, version) > 0) {
+        notify(`A new version is available: v${tag}`, 'info')
+      }
+    } catch {
+      // offline / unreachable — silently ignore
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [version])
+
   // Initial load
   useEffect(() => {
     api.version().then((v) => setVersion(v.version)).catch(() => {})
@@ -136,6 +155,17 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // Run the startup update check once both settings and version are available.
+  const checkedOnce = useRef(false)
+  useEffect(() => {
+    if (checkedOnce.current) return
+    if (settings && settings.check_updates_on_startup && version) {
+      checkedOnce.current = true
+      checkForUpdates()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [settings, version])
 
   // SSE live updates
   useEffect(() => {
@@ -216,4 +246,15 @@ export function useAppStore(): AppStoreValue {
 }
 
 export { ApiError }
+
+function compareVersions(a: string, b: string): number {
+  const pa = a.split('.').map(Number)
+  const pb = b.split('.').map(Number)
+  for (let i = 0; i < 3; i++) {
+    const x = pa[i] || 0
+    const y = pb[i] || 0
+    if (x !== y) return x - y
+  }
+  return 0
+}
 
