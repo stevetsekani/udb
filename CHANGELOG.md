@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 3.0.0 [2026-08-10]
+- Major: Introduce a desktop GUI application (React + TypeScript frontend, Flask local backend, PyWebView shell) with a dashboard, live download queue, persistent history (SQLite), full settings UI, dark/light/system themes, and real per-file progress via Server-Sent Events.
+- Add: Self-contained packaging — Windows portable build (UDB-Windows-x64.zip) and Linux AppImage, both bundling Python, the web UI and static FFmpeg binaries. No Python, pip, FFmpeg or PATH setup required for end users.
+- Add: Local-only HTTP API bound to 127.0.0.1 on an ephemeral port, with an optional per-install auth token; no remote backend.
+- Add: GitHub Actions CI (backend + frontend tests) and a Release workflow producing Windows/Linux artifacts with SHA256 checksums.
+- Add: Dev workflow — `python scripts/dev.py` runs the backend with Vite hot reload.
+- Preserve: The original CLI (`python udb.py`) continues to work unchanged and shares the same engine and `config_udb.yaml` with the GUI.
+
 ## Version 2.16.1 [2026-07-13]
 - Enhancement #95: Download episodes/movies with double-digit numbering.
 - Enhancement #94: Update the project from `quickjs` to `quickjs-ng`, which is actively maintained.
