@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ExternalLink, Github, RefreshCw } from 'lucide-react'
+import { ExternalLink, Github, RefreshCw, X } from 'lucide-react'
 import { useAppStore } from '../store/AppStore'
 
 const UPSTREAM = 'https://github.com/Prudhvi-pln/udb'
@@ -88,6 +88,12 @@ export function AboutPage() {
             )}
           </div>
         )}
+
+        <div style={{ marginTop: 22 }}>
+          <button className="btn btn-danger" onClick={quitApp}>
+            <X style={{ width: 14, height: 14 }} /> Quit UDB
+          </button>
+        </div>
       </div>
 
       <div className="card" style={{ marginTop: 16 }}>
@@ -114,6 +120,18 @@ FFmpeg: ${ffmpeg?.version ?? 'unknown'} (${ffmpeg?.source ?? 'missing'})`}
       </div>
     </div>
   )
+}
+
+function quitApp() {
+  // Native quit via the desktop shell bridge; falls back to closing the window.
+  const w = window as unknown as {
+    pywebview?: { api?: { quit?: () => unknown } }
+  }
+  if (w.pywebview?.api?.quit) {
+    w.pywebview.api.quit()
+    return
+  }
+  window.close()
 }
 
 function compareVersions(a: string, b: string): number {

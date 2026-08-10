@@ -183,15 +183,15 @@ export function HistoryPage() {
 }
 
 function openFolder(path: string) {
-  // Best-effort: reuse the API open-folder endpoint via a temporary mechanism.
-  // The backend exposes no generic open-folder for arbitrary paths; fall back to
-  // a platform command injected by the desktop shell.
-  const win = window as unknown as { udbOpenFolder?: (p: string) => boolean }
-  if (win.udbOpenFolder) {
-    win.udbOpenFolder(path)
+  // Desktop shell (PyWebView) exposes window.pywebview.api.open_folder.
+  const w = window as unknown as {
+    pywebview?: { api?: { open_folder?: (p: string) => unknown } }
+  }
+  if (w.pywebview?.api?.open_folder) {
+    w.pywebview.api.open_folder(path)
     return
   }
-  // In browser dev, attempt a location change to the file path (works on some systems)
+  // In a plain browser, attempt a file:// navigation (works on some systems).
   try {
     window.location.href = `file://${path.replace(/\\/g, '/')}`
   } catch {
