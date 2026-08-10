@@ -30,7 +30,10 @@ ZIP_NAME = 'UDB-Windows-x64.zip'
 
 def run(cmd, cwd=None):
     print(f'[build] $ {cmd}')
-    subprocess.run(cmd, cwd=cwd, check=True)
+    # On Windows there is no npm.exe on PATH (only npm.cmd); Python's
+    # subprocess cannot launch a .cmd shim without routing through the shell.
+    # python/pip are real .exe files so they work either way.
+    subprocess.run(cmd, cwd=cwd, check=True, shell=(os.name == 'nt'))
 
 
 def build_frontend():
