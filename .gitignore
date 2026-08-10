@@ -41,3 +41,7 @@ packaging/linux/*.spec
 .idea/
 .DS_Store
 Thumbs.db
+
+# tsc -b composite emit artifacts
+vite.config.js
+vite.config.d.ts
