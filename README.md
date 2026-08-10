@@ -1,125 +1,134 @@
-# UDB [Ultimate-Download-Bot]
+# UDB — Ultimate Download Bot
 
-Welcome to the UDB, the Ultimate-Download-Bot for Anime, Drama, Movies & TV Shows! 🎉
+A polished desktop application for downloading **anime, drama, movies and TV
+shows**. UDB bundles a beautiful web-style GUI, a local engine that powers the
+downloads, and everything needed to run on a clean machine — **no Python, pip,
+FFmpeg or PATH configuration required**.
 
-## Current Status (as on 2024-10-08)
-| S.No | Category           | Website                                   | Status |
-| :--: | :----------------- | :---------------------------------------: | :----: |
-|   1  | Anime              | [GogoAnime](https://anitaku.to/)          | Active (But no updates after Nov' 24, 2024) |
-|   2  | Anime              | [AnimePahe](https://animepahe.ru/)        | Active |
-|   3  | Drama              | [MyAsianTV](https://myasiantv.ac/)        | Inactive |
-|   4  | Drama              | [Asianbxkiun](https://asianbxkiun.pro/)   | Active (But no updates after Nov' 24, 2024) |
-|   5  | Movies & TV Shows  | [Vidsrc](https://vidsrc.to/)              | Support discontinued |
-|   6  | Movies & TV Shows  | [Superembed](https://streambucket.net/)   | Support discontinued |
-|   7  | Anime, Drama, Movies & TV Shows | [KissKh](https://kisskh.co/) | Active (But no multi-resolutions) |
-
-## Insipiration
-
-It is a weekend and you found a good anime/series to binge-watch. But the effort of downloading all episodes (especially for series like One Piece 😅), the pain is unimaginable. _Ofcourse, you have an option to watch online, but what about people with poor unstable networks, or students with limited access to wifi_. So, this is created to help all such troubled souls. As Ikta Solorok once said: `Laziness is the mother of evolution`
-
-## Overview
-
-The UDB is a fantastic tool designed for all the anime, drama, series lovers out there. With just a few clicks in the command line, you can effortlessly download entire series, saving you the hassle of manually downloading each episode one by one.
-
-![udb demo](images/udb-demo.gif)
-
-## Features
-
-- **Batch Download:** Download complete anime series or drama shows or TV shows with a single command.
-- **Fast and Efficient:** The downloader is optimized for speed, allowing you to grab your favorite episodes in no time.
-- **Customizable Options:** Choose specific seasons, episodes, or ranges to download according to your preferences.
-- **Quality Selection:** Select the video quality that suits your needs.
-- **Auto-Retry:** If a download fails, the downloader automatically retries until successful.
-- **Informative Progress Bar:** Track the progress of your downloads with a visually appealing progress bar.
-- **Command Line Interface (CLI) Automation:** UDB provides robust support for CLI arguments, facilitating seamless automation of tasks.
-- **High-speed Downloader:** Optimized to offer best download experience.
-- **Ad-Free Experience:** UDB offers an ad-free downloading experience, ensuring uninterrupted access to your favorite anime, drama, movies, and TV series without any distractions.
-
-## Supported OS
-- Windows
-- Linux
-- Android (Termux only)
-
-## Requirements
-
-To use the UDB, make sure you have the following requirements met:
-
-- Python 3.8 or higher
-- pip
-- Internet connection
-- ffmpeg
-  - Windows:
-    - download ffmpeg from [here](https://ffmpeg.org/download.html)
-    - add to Environment variables > PATH
-  - Linux (Ubuntu):
-    - sudo apt install -y ffmpeg
-  - Android (Termux):
-    - pkg install ffmpeg
-
-## Installation
-
-1. Clone the repository:
-
-    ```
-    git clone https://github.com/Prudhvi-pln/udb.git
-    ```
-
-2. Navigate to the project directory:
-
-    ```
-    cd udb
-    ```
-
-3. Install the required dependencies:
-
-    ```
-    pip install -r requirements.txt
-    ```
-4. Edit the configuration in your favourite editor: __Make sure to set the download path__
-
-    ```
-    vi config_udb.yaml
-    ```
-
-5. You're all set! Start downloading your favorite series by running:
-
-    ```
-    python udb.py
-    ```
-
-## Usage
-
-UDB is super easy to use. Follow these steps:
-
-1. Launch your favorite command-line interface.
-2. Navigate to the project directory.
-3. Run the following command:
-
-   ```
-   python udb.py
-   ```
-
-4. Sit back, relax, and let the magic happen! The downloader will guide you through the process and download your selected series/movie.
-
-5. Run `python udb.py -h` for more information about the cli arguments
-
-## Contributing
-
-I welcome contributions from fellow anime and drama enthusiasts like you! If you have any ideas, improvements, or bug fixes, feel free to open an issue or submit a pull request. Let's make this downloader even more amazing together!
-
-## Acknowledgements
-
-I would like to express my gratitude to the creators and developers of the open-source libraries and tools used in this project. Without their contributions, this downloader would not be possible.
- - [animdl](https://github.com/justfoolingaround/animdl)
- - [dra-cla](https://github.com/CoolnsX/dra-cla/blob/main/dra-cla)
- - [vidsrc-to-resolver](https://github.com/Ciarands/vidsrc-to-resolver)
- - [vidplay-keys](https://github.com/KillerDogeEmpire/vidplay-keys)
- - [m3u8downloader](https://github.com/josephcappadona/m3u8downloader)
-
-## Known issues
- - Progress bar printing duplicate lines for same file
-   - This issue occurs due to ascii characters used and depends on the command line (Prefer Powershell in Windows)
+UDB is a fork enhancement of the original
+[Prudhvi-pln/udb](https://github.com/Prudhvi-pln/udb) command-line downloader.
+The original downloader engine is preserved and shared by both the GUI and the
+CLI, so nothing that used to work is removed.
 
 ---
 
-Start binge-watching your favorite movies / series like never before! Happy downloading! 🍿✨
+## ✨ Highlights
+
+- **Desktop app with a modern GUI** — dark / light / system themes, a dashboard
+  with live progress, a persistent download queue, and a searchable history.
+- **No setup for end users** — download a single portable build (`.zip` /
+  `.exe` / `.AppImage`), double-click, and go. Python, FFmpeg and Node are
+  bundled or discovered automatically.
+- **Real progress, never fake** — the GUI shows live per-file progress streamed
+  from the actual downloader over Server-Sent Events.
+- **Local-only** — everything runs on `127.0.0.1` inside your machine. No
+  accounts, no remote servers, no telemetry.
+- **Persistent settings & history** — your download folder, quality preference,
+  theme and every download attempt are stored on disk.
+- **Original CLI still works** — `python udb.py` continues to behave exactly as
+  before for power users and automation.
+
+## 🖥️ Screenshots / status
+
+| Source | Status |
+| :----- | :----: |
+| AnimePahe | Active |
+| KissKh (anime, drama, movies & TV) | Active |
+| GogoAnime | Active (no updates after Nov 2024) |
+| MyAsianTV / Asianbxkiun | Inactive |
+| Vidsrc / Superembed | Discontinued |
+
+## 🚀 Getting started
+
+### Option 1 — Use the desktop app (recommended)
+
+1. Download the latest build for your OS from
+   [Releases](https://github.com/stevetsekani/udb/releases):
+   - **Windows**: `UDB-Windows-x64.zip` (portable — unzip and run `udb.exe`)
+   - **Linux**: `UDB-x86_64.AppImage`
+2. Launch the app. A window opens with the search dashboard.
+3. Search for a title, pick a result, choose episodes and quality, and download.
+
+### Option 2 — Run from source (developers)
+
+```bash
+python -m pip install -r requirements.txt -r requirements-dev.txt
+python desktop/main.py --debug        # desktop shell with dev tools
+python scripts/dev.py                 # backend + Vite hot reload
+```
+
+### Option 3 — The original CLI
+
+```bash
+python -m pip install -r requirements.txt
+python udb.py                         # interactive CLI (unchanged)
+python udb.py -h                      # all CLI arguments
+```
+
+## 🔍 How it works
+
+The desktop app is three pieces wired together:
+
+```
+┌────────────────────────────────────────────────────────┐
+│  Desktop shell (PyWebView)                             │
+│  opens a native window at http://127.0.0.1:<port>      │
+└───────────────┬────────────────────────────────────────┘
+                │ serves the built frontend
+┌───────────────▼────────────────────────────────────────┐
+│  Local backend (Flask, 127.0.0.1 only)                 │
+│  REST API + SSE progress + settings + history (SQLite) │
+└───────────────┬────────────────────────────────────────┘
+                │ calls the same engine the CLI uses
+┌───────────────▼────────────────────────────────────────┐
+│  UDB engine (udb.py / Clients / Utils)                 │
+│  AnimePahe & KissKh clients, m3u8/direct downloaders   │
+└────────────────────────────────────────────────────────┘
+```
+
+See [GUI_ARCHITECTURE.md](GUI_ARCHITECTURE.md) for the full design, the API
+reference, and the security model.
+
+## 📦 Build it yourself
+
+- [BUILDING.md](BUILDING.md) — prerequisites and step-by-step builds for
+  Windows, Linux and the desktop shell.
+- [RELEASE.md](RELEASE.md) — how CI builds artifacts and how to publish a
+  release (SHA256 checksums, GitHub Actions).
+
+## 🗂️ Data & configuration
+
+| Item | Location |
+| :--- | :------- |
+| Windows app data | `%APPDATA%\UDB\` |
+| Linux app data | `~/.config/udb/` |
+| macOS app data | `~/Library/Application Support/UDB/` |
+| Configuration | `config_udb.yaml` (copied on first run, editable in Settings) |
+| History database | `history.db` (SQLite) |
+| Logs | `logs/` (rotated, viewable in Settings) |
+| FFmpeg | bundled when available; otherwise auto-discovered |
+
+The CLI's `config_udb.yaml` format is unchanged — the GUI Settings page edits
+the very same file, so CLI and GUI share your configuration.
+
+## 🧪 Tests
+
+```bash
+python -m pytest tests/ -q        # backend tests (42 tests)
+cd frontend && npx vitest run      # frontend unit tests
+cd frontend && npx tsc --noEmit    # type-check
+```
+
+## ❤️ Acknowledgements
+
+This GUI fork builds on the original UDB by **Prudhvi PLN** and the open-source
+libraries it relies on: animdl, dra-cla, vidsrc-to-resolver, vidplay-keys,
+m3u8downloader, plus Flask, PyWebView, React and friends. See
+[THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) for bundled binaries and
+licenses.
+
+## 📄 License
+
+MIT — see [LICENSE.md](LICENSE.md). Bundled third-party binaries are
+redistributed under their own licenses (see THIRD_PARTY_NOTICES.txt).
+

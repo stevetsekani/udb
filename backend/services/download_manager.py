@@ -63,14 +63,14 @@ class DownloadManager:
     # ------------------------------------------------------------------ #
     # Job creation                                                       #
     # ------------------------------------------------------------------ #
-    def _new_job(self, batch_id, title, ep, season, quality, client_key,
+    def _new_job(self, batch_id, title, episode, season, quality, client_key,
                  download_dir, episode_name) -> dict:
         job_id = f'dl-{uuid.uuid4().hex[:12]}'
         job = {
             'id': job_id,
             'batch_id': batch_id,
             'title': title,
-            'episode': ep,
+            'episode': episode,
             'season': season,
             'quality': quality,
             'client': client_key,

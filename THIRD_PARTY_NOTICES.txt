@@ -1,0 +1,113 @@
+UDB Third-Party Notices
+=======================
+
+UDB is a fork enhancement of the original UDB project by Prudhvi PLN
+(https://github.com/Prudhvi-pln/udb), released under the MIT License.
+
+The UDB desktop application bundles or depends on the following third-party
+software. Each item is redistributed under its own license; the licenses are
+included or available from the sources listed below.
+
+--------------------------------------------------------------------------------
+
+1. Original UDB engine (Clients/, Utils/, udb.py)
+   Author: Prudhvi PLN
+   Source: https://github.com/Prudhvi-pln/udb
+   License: MIT
+
+2. animdl (referenced by the original engine)
+   Source: https://github.com/justfoolingaround/animdl
+   License: MIT
+
+3. dra-cla (referenced by the original engine)
+   Source: https://github.com/CoolnsX/dra-cla
+   License: MIT
+
+4. vidsrc-to-resolver (referenced by the original engine)
+   Source: https://github.com/Ciarands/vidsrc-to-resolver
+   License: MIT
+
+5. vidplay-keys (referenced by the original engine)
+   Source: https://github.com/KillerDogeEmpire/vidplay-keys
+   License: MIT
+
+6. m3u8downloader (referenced by the original engine)
+   Source: https://github.com/josephcappadona/m3u8downloader
+   License: MIT
+
+7. Flask (web backend)
+   Source: https://github.com/pallets/flask
+   License: BSD-3-Clause
+
+8. PyWebView (desktop shell)
+   Source: https://github.com/r0x0r/pywebview
+   License: BSD-3-Clause
+
+9. React, ReactDOM
+   Source: https://github.com/facebook/react
+   License: MIT
+
+10. lucide-react (icons)
+    Source: https://github.com/lucide-icons/lucide
+    License: ISC
+
+11. react-router-dom
+    Source: https://github.com/remix-run/react-router
+    License: MIT
+
+12. Vite (frontend build tool)
+    Source: https://github.com/vitejs/vite
+    License: MIT
+
+13. Selenium (browser automation used by the clients)
+    Source: https://github.com/SeleniumHQ/selenium
+    License: Apache-2.0
+
+14. undetected-chromedriver (browser automation helper)
+    Source: https://github.com/undetected-chromedriver/undetected-chromedriver
+    License: GPL-3.0
+
+15. requests
+    Source: https://github.com/psf/requests
+    License: Apache-2.0
+
+16. beautifulsoup4
+    Source: https://www.crummy.com/software/BeautifulSoup/
+    License: MIT
+
+17. PyYAML
+    Source: https://pyyaml.org/
+    License: MIT
+
+18. tqdm
+    Source: https://github.com/tqdm/tqdm
+    License: MIT / MPL-2.0
+
+19. pycryptodomex (Cryptodome)
+    Source: https://github.com/Legrandin/pycryptodome
+    License: BSD-2-Clause (Public Domain parts)
+
+20. quickjs-ng (quickjs Python bindings)
+    Source: https://github.com/0dminnimda/quickjs-ng
+    License: MIT
+
+21. FFmpeg (bundled static binaries)
+    Source (Windows): BtbN/FFmpeg-Builds — https://github.com/BtbN/FFmpeg-Builds
+    Source (Linux):   johnvansickle.com — https://johnvansickle.com/ffmpeg/
+    License: LGPL/GPL depending on build configuration (GPL builds are used for
+             the bundled static binaries). See https://ffmpeg.org/legal.html
+             and the COPYING / LICENSE files shipped with each build.
+
+22. Werkzeug (WSGI server for the local backend)
+    Source: https://github.com/pallets/werkzeug
+    License: BSD-3-Clause
+
+23. PyInstaller (build tool; not bundled in the app, used to create artifacts)
+    Source: https://github.com/pyinstaller/pyinstaller
+    License: GPL-2.0-or-later with a special exception for bundled Python code
+
+--------------------------------------------------------------------------------
+
+Full license texts for the above are available at the linked sources and, where
+applicable, inside the wheel distributions installed with the application.
+

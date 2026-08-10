@@ -1,0 +1,98 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build Windows portable
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Build UDB portable ZIP
+        run: python packaging/windows/build_windows.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: UDB-Windows-x64
+          path: dist/UDB-Windows-x64.zip
+
+  build-linux:
+    name: Build Linux AppImage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pyinstaller
+
+      - name: Install AppImage build prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfuse2 file
+
+      - name: Build UDB AppImage
+        run: python packaging/linux/build_linux.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: UDB-x86_64
+          path: dist/UDB-x86_64.AppImage
+
+  release:
+    name: Create GitHub Release
+    needs: [build-windows, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Generate SHA256 checksums
+        run: |
+          cd artifacts
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            artifacts/UDB-Windows-x64.zip
+            artifacts/UDB-x86_64.AppImage
+            artifacts/SHA256SUMS.txt
+
