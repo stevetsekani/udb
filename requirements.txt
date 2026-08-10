@@ -7,3 +7,5 @@ pycryptodomex
 undetected-chromedriver
 setuptools
 quickjs-ng
+flask
+pywebview
